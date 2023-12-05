@@ -20,7 +20,9 @@ jobs:
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
 
           git remote set-url origin git@github.com:${{ github.repository }}.git
-          echo ${{ secrets.DEPLOY_PRIVATE_KEY }} >deploy_key
+          cat <<EOF >./deploy_key
+          ${{ secrets.DEPLOY_PRIVATE_KEY }}
+          EOF
 
       - name: commit and push changes
         run: |
