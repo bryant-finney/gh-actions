@@ -1,4 +1,4 @@
-name: `test markdown`
+name: '`test markdown`'
 
 on:
   workflow_dispatch:
