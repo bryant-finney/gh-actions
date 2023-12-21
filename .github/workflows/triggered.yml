@@ -1,0 +1,12 @@
+name: test event name
+
+on:
+  workflow_run:
+    types: [completed]
+    workflows: ["`test markdown"]
+
+jobs:
+  print_event_name:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ github.event_name }}
