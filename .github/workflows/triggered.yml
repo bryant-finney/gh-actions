@@ -3,7 +3,7 @@ name: test event name
 on:
   workflow_run:
     types: [completed]
-    workflows: ["`test markdown"]
+    workflows: ["`test markdown`"]
 
 jobs:
   print_event_name:
