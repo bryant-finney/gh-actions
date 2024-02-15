@@ -1,0 +1,10 @@
+on:
+  push:
+
+jobs:
+  eval:
+    env:
+      THE_COMMAND: printenv | grep GIT
+    runs-on: ubuntu-latest
+    steps:
+      - run: $THE_COMMAND
