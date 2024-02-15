@@ -7,4 +7,4 @@ jobs:
       THE_COMMAND: printenv | grep GIT
     runs-on: ubuntu-latest
     steps:
-      - run: $THE_COMMAND
+      - run: eval $THE_COMMAND
