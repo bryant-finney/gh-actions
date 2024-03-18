@@ -1,10 +1,16 @@
 on:
   push:
+  workflow_dispatch:
 
 jobs:
-  eval:
-    env:
-      THE_COMMAND: printenv | grep GIT
+  clone:
     runs-on: ubuntu-latest
     steps:
-      - run: eval $THE_COMMAND
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository_owner }}/config-ninja
+          path: ../config-ninja
+
+      - run: ls ../config-ninja
