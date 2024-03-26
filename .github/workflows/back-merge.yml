@@ -23,6 +23,7 @@ jobs:
 
       - if: steps.list-open.outputs.prs == ''
         run: 'gh pr create
+          --repo ${{ github.repository }}
           --base ${{ github.event.repository.default_branch }}
           --head ${{ github.ref_name }}
           --assignee ${{ github.actor }}
