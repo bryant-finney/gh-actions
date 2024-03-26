@@ -30,6 +30,7 @@ jobs:
           --base ${{ github.event.repository.default_branch }}
           --head ${{ github.ref_name }}
           --assignee ${{ github.actor }}
+          --reviewer ${{ github.actor }}
           --label chore
           --title "chore(back-merge): ${{ github.ref_name }}"
           --fill-verbose'
