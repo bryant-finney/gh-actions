@@ -4,6 +4,9 @@ on:
 
 jobs:
   pr:
+    env:
+      GH_TOKEN: ${{ github.token }}
+
     permissions:
       contents: read
       pull-requests: write
