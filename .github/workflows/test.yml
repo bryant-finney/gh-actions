@@ -34,5 +34,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Convert outputs to JSON and print
-        run: > 
-          { echo '```json'; echo "${{ toJson(needs.clone.outputs) }}"; echo '```'; } >>"$GITHUB_STEP_SUMMARY"
+        run: |
+          cat <<'EOF' >>"$GITHUB_STEP_SUMMARY"
+          ```json
+          ${{ toJson(needs.clone.outputs) }}
+          ```
+          EOF
