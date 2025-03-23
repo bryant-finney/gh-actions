@@ -8,6 +8,7 @@ jobs:
       a: ${{ steps.a.outputs.value }}
       b: ${{ steps.b.outputs.value }}
       c: ${{ steps.c.outputs.value }}
+      d-e: ${{ steps.d-e.outputs.value }} 
 
     runs-on: ubuntu-latest
     steps:
@@ -27,6 +28,9 @@ jobs:
         run: printf 'value=%s\n' 1 >>"$GITHUB_OUTPUT"
       
       - id: c
+        run: printf 'value=%s\n' 2 >>"$GITHUB_OUTPUT"
+
+      - id: d-e
         run: printf 'value=%s\n' 2 >>"$GITHUB_OUTPUT"
 
   print:
