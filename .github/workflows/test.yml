@@ -4,6 +4,11 @@ on:
 
 jobs:
   clone:
+    outputs:
+      a: ${{ steps.a.outputs.value }}
+      b: ${{ steps.b.outputs.value }}
+      c: ${{ steps.c.outputs.value }}
+
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -14,3 +19,20 @@ jobs:
           path: .local/config-ninja
 
       - run: ls .local/config-ninja
+
+      - id: a
+        run: printf 'value=%s\n' 0 >>"$GITHUB_OUTPUT"
+
+      - id: b
+        run: printf 'value=%s\n' 1 >>"$GITHUB_OUTPUT"
+      
+      - id: c
+        run: printf 'value=%s\n' 2 >>"$GITHUB_OUTPUT"
+
+  print:
+    needs: clone
+    runs-on: ubuntu-latest
+    steps:
+      - name: Convert outputs to JSON and print
+        run: > 
+          { echo '```json'; echo "${{ toJson(needs.clone.outputs) }}"; echo '```'; } >>"$GITHUB_STEP_SUMMARY"
