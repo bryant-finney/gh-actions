@@ -5,10 +5,7 @@ on:
 jobs:
   clone:
     outputs:
-      a: ${{ steps.a.outputs.value }}
-      b: ${{ steps.b.outputs.value }}
-      c: ${{ steps.c.outputs.value }}
-      d-e: ${{ steps.d-e.outputs.value }} 
+      all: ${{ toJSON(steps.all.outputs) }}
 
     runs-on: ubuntu-latest
     steps:
@@ -21,17 +18,9 @@ jobs:
 
       - run: ls .local/config-ninja
 
-      - id: a
-        run: printf 'value=%s\n' 0 >>"$GITHUB_OUTPUT"
-
-      - id: b
-        run: printf 'value=%s\n' 1 >>"$GITHUB_OUTPUT"
-      
-      - id: c
-        run: printf 'value=%s\n' 2 >>"$GITHUB_OUTPUT"
-
-      - id: d-e
-        run: printf 'value=%s\n' 2 >>"$GITHUB_OUTPUT"
+      - id: all
+        run: |
+          { echo a=0; echo b=1; echo c=2; echo d-e=3-4; } >>"$GITHUB_OUTPUT"
 
   print:
     needs: clone
@@ -41,6 +30,6 @@ jobs:
         run: |
           cat <<'EOF' >>"$GITHUB_STEP_SUMMARY"
           ```json
-          ${{ toJson(needs.clone.outputs) }}
+          ${{ needs.clone.outputs.all }}
           ```
           EOF
