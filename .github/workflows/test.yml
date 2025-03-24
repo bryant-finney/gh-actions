@@ -33,3 +33,15 @@ jobs:
           ${{ needs.clone.outputs.all }}
           ```
           EOF
+
+  json:
+    env:
+      JSON_DATA: >
+        {
+          "a": 0,
+          "b": 1,
+          "c": 2
+        }
+    runs-on: ubuntu-latest 
+    steps: 
+      - run: echo "$JSON_DATA" | jq .
