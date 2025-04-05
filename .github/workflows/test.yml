@@ -5,7 +5,7 @@ on:
 
 jobs:
   on-pr:
-    if: github.event.pull_request.base.ref == github.event.repository.default_branch
+    if: ${{ github.event.pull_request.base.ref == github.event.repository.default_branch }}
     runs-on: ubuntu-latest
     steps:
       - env:
